@@ -44,15 +44,14 @@ func DecryptCookie(data, key []byte) ([]byte, error) {
 // GenerateKey Generates an encryption key according to the length.
 // If the length does not match the valid AES block size, it generates a 32-byte encryption key instead.
 func GenerateKey(length ...int) []byte {
-	var key = make([]byte, 0)
 	if len(length) != 0 {
 		switch length[0] {
 		case 16, 24, 32:
-			key, _ = aes.GenerateRandomBytes(length[0])
+			key, _ := aes.GenerateRandomBytes(length[0])
 			return key
 		}
 	}
-	key, _ = aes.GenerateRandomBytes(32)
+	key, _ := aes.GenerateRandomBytes(32)
 	return key
 }
 
